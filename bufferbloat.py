@@ -194,7 +194,7 @@ def bufferbloat():
     for i in range(3):
         start_time = time()
         h2 = net.get('h2')
-        Popen("curl -o /dev/null -s -w %{time_total} %s > %s/curl.txt"%(h2.IP(), args.dir), shell=True).wait()
+        Popen("curl -o /dev/null -s -w %{{time_total}} %s > %s/curl.txt"%(h2.IP(), args.dir), shell=True).wait()
         now = time()
         delta = now - start_time
         time_fetch.append(delta)
