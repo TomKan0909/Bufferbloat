@@ -174,9 +174,8 @@ def bufferbloat():
     
 
     # TODO: Start iperf, webservers, etc.
-    start_iperf(net)
     start_webserver(net)
-
+    start_iperf(net)
 
     # Hint: The command below invokes a CLI which you can use to
     # debug.  It allows you to run arbitrary commands inside your
@@ -194,8 +193,9 @@ def bufferbloat():
     time_fetch = []
     for i in range(3):
         start_time = time()
+        h1 = net.get('h1')
         h2 = net.get('h2')
-        Popen("curl -o /dev/null -s -w %s %s > %s/curl.txt"%('%{time_total}', h2.IP(), args.dir), shell=True).wait()
+        h1.popen("curl -o /dev/null -s -w %s %s > %s/curl.txt"%('%{time_total}', h2.IP(), args.dir), shell=True).wait()
         print("curl -o /dev/null -s -w %s %s > %s/curl.txt"%('%{time_total}', h2.IP(), args.dir))
         now = time()
         delta = now - start_time
