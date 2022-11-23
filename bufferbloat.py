@@ -21,6 +21,7 @@ import termcolor as T
 import sys
 import os
 import math
+import numpy as np
 
 # TODO: Don't just read the TODO sections in this code.  Remember that
 # one of the goals of this assignment is for you to learn how to use
