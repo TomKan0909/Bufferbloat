@@ -195,8 +195,8 @@ def bufferbloat():
         start_time = time()
         h1 = net.get('h1')
         h2 = net.get('h2')
-        h1.popen("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h2.IP(), '%{time_total}', h2.IP(), args.dir), shell=True).wait()
-        print("curl -o /dev/null -s -w %s %s > %s/curl.txt"%('%{time_total}', h2.IP(), args.dir))
+        h2.popen("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir), shell=True).wait()
+        print("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir))
         now = time()
         delta = now - start_time
         time_fetch.append(delta)
