@@ -12,5 +12,10 @@ Total bits in queue = 1500 * 8 * 1000 = 12 * 10 ^6 b
 time = (12 * 10^6 b) / (100 * 10^6 bps) = 1.2s
 
 3. *How does the RTT reported by ping vary with the queue size? Write a symbolic equation to describe the relation between the two (ignore computation overheads in ping that might affect the final result).* <br/>
+RTT ~ 0.01-0.03 * QUEUE_SIZE
+0.62s / sz 20
+1.28s/ sz 100
 
 4. *Identify and describe two ways to mitigate the bufferbloat problem.* <br/>
+- Use smarter deque techniques for buffer instead of FIFO, help smooth out network traffic instead of clumping it all together
+- Decrease buffer size to help decrease buffer delay for packets. Let congestion control deal with packet loss issue
