@@ -144,6 +144,12 @@ def start_ping(net):
     # h1 = net.get('h1')
     # popen = h1.popen("echo '' > %s/ping.txt"%(args.dir), shell=True)
 
+def fetch_curl_time(net):
+    h1 = net.get('h1')
+    h2 = net.get('h2')
+    t_fetch = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP())).communicate()[0]
+    return float(t_fetch)
+
 def bufferbloat():
     if not os.path.exists(args.dir):
         os.makedirs(args.dir)
@@ -205,8 +211,7 @@ def bufferbloat():
         h2 = net.get('h2')
         for _ in range(3):
             # time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
-            t_fetch = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP())).communicate()[0]
-            time_fetch.append(float(t_fetch))
+            time_fetch.append(fetch_curl_time(net))
         sleep(1)
         # after_fetch = time()
         # if after_fetch - now < 5:
