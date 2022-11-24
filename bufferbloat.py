@@ -177,8 +177,8 @@ def bufferbloat():
     
 
     # TODO: Start iperf, webservers, etc.
-    start_webserver(net)
     start_iperf(net)
+    start_webserver(net)
 
     # Hint: The command below invokes a CLI which you can use to
     # debug.  It allows you to run arbitrary commands inside your
@@ -211,7 +211,7 @@ def bufferbloat():
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-    print(time_fetch)
+    # print(time_fetch)
     avg = sum(time_fetch)/len(time_fetch)
     std = np.std(time_fetch)
     print "Average time to fetch webpage: %.2f seconds"%avg
