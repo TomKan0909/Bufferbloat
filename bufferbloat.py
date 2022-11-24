@@ -207,7 +207,7 @@ def bufferbloat():
             # time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
             t_fetch = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP())).communicate()[0]
             time_fetch.append(float(t_fetch))
-        sleep(5)
+        sleep(1)
         # after_fetch = time()
         # if after_fetch - now < 5:
         #     sleep(5 - (after_fetch - now))
