@@ -82,8 +82,11 @@ class BBTopo(Topo):
         switch = self.addSwitch('s0')
 
         # TODO: Add links with appropriate characteristics        
-        for h in hosts:
-            self.addLink(h, switch, bw=args.bw_host, delay=args.delay, max_queue_size=args.maxq)
+        for i, h in enumerate(hosts):
+            if i == 0:
+                self.addLink(h, switch, bw=args.bw_host, delay=args.delay, max_queue_size=args.maxq)
+            else:
+                self.addLink(h, switch, bw=args.bw_net, delay=args.delay, max_queue_size=args.maxq)
 
 # Simple wrappers around monitoring utilities.  You are welcome to
 # contribute neatly written (using classes) monitoring scripts for
@@ -130,7 +133,7 @@ def start_ping(net):
     # to see how to do this.
     h1 = net.get('h1')
     h2 = net.get('h2')
-    proc = h1.popen("ping -i 0.1 %s > %s/ping.txt"%(h2.IP(), args.dir), shell=True)
+    h1.popen("ping -i 0.1 %s > %s/ping.txt"%(h2.IP(), args.dir), shell=True)
 
     # Hint: Use host.popen(cmd, shell=True).  If you pass shell=True
     # to popen, you can redirect cmd's output using shell syntax.
@@ -168,7 +171,7 @@ def bufferbloat():
     # Depending on the order you add links to your network, this
     # number may be 1 or 2.  Ensure you use the correct number.
     #
-    qmon = start_qmon(iface='s0-eth1',
+    qmon = start_qmon(iface='s0-eth2',
                      outfile='%s/q.txt' % (args.dir))
     # qmon = None
     
@@ -191,18 +194,19 @@ def bufferbloat():
     # Hint: have a separate function to do this and you may find the
     # loop below useful.
     time_fetch = []
-    for i in range(3):
-        start_time = time()
-        h1 = net.get('h1')
-        h2 = net.get('h2')
-        h2.popen("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir), shell=True).wait()
-        print("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir))
+    start = time()
+    while true:
         now = time()
         delta = now - start_time
         time_fetch.append(delta)
         if delta > args.time:
             break
         print "%.1fs left..." % (args.time - delta)
+        h1 = net.get('h1')
+        h2 = net.get('h2')
+        for _ in range(3):
+            t_fetch = h2.popen("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir), shell=True).wait() 
+            time_fetch.append(t_fetch)
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
