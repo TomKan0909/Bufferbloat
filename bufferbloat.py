@@ -205,7 +205,7 @@ def bufferbloat():
         h1 = net.get('h1')
         h2 = net.get('h2')
         for _ in range(3):
-            time_fetch.append(h2.popen("curl -o /dev/null -s -w %s %s/http/index.html > %s/curl.txt"%('%{time_total}', h1.IP(), args.dir), shell=True).communicate()[0])
+            time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
         sleep(5) # every 5 seconds
 
     # TODO: compute average (and standard deviation) of the fetch
