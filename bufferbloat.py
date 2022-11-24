@@ -207,9 +207,10 @@ def bufferbloat():
             # time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
             t_fetch = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP())).communicate()[0]
             time_fetch.append(float(t_fetch))
-        after_fetch = time()
-        if after_fetch - now < 5:
-            sleep(5 - (after_fetch - now))
+        sleep(5)
+        # after_fetch = time()
+        # if after_fetch - now < 5:
+        #     sleep(5 - (after_fetch - now))
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
@@ -218,7 +219,7 @@ def bufferbloat():
     avg = sum(time_fetch)/len(time_fetch)
     std = np.std(time_fetch)
 
-    Popen("echo 'Average time to fetch webpage: %s\n Standard deviation to fetch webpage: %s\n' >> %s/README.txt"%(avg, std, args.dir), shell=True).wait()
+    Popen("echo 'Average time to fetch webpage: %s\nStandard deviation to fetch webpage: %s\n' >> %s/README.txt"%(avg, std, args.dir), shell=True).wait()
 
     print "Average time to fetch webpage: %.2f seconds"%avg
     print "Standard deviation: %.2f seconds"%std
