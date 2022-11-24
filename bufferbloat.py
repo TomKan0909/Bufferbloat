@@ -195,7 +195,7 @@ def bufferbloat():
     # loop below useful.
     time_fetch = []
     start = time()
-    while true:
+    while True:
         now = time()
         delta = now - start_time
         time_fetch.append(delta)
