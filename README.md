@@ -4,7 +4,7 @@
 ## Questions 
 
 1. *Why do you see a difference in webpage fetch times with small and large router buffers?* <br/> 
-
+something bout large buffers getting clogged up causing RTT to increase thus webpage fetch time on avg higher for large buffer
 
 2. *Bufferbloat can occur in other places such as your network interface card (NIC). Check the output of ifconfig eth0 on your VirtualBox VM. What is the (maximum) transmit queue length on the network interface reported by ifconfig? For this queue size and a draining rate of 100 Mbps, what is the maximum time a packet might wait in the queue before it leaves the NIC?* <br/>
 
