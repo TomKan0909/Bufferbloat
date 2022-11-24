@@ -212,6 +212,7 @@ def bufferbloat():
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
     # print(time_fetch)
+    print(time_fetch)
     avg = sum(time_fetch)/len(time_fetch)
     std = np.std(time_fetch)
 
