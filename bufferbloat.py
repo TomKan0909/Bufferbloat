@@ -205,7 +205,7 @@ def bufferbloat():
         h1 = net.get('h1')
         h2 = net.get('h2')
         for _ in range(3):
-            time_fetch.append(h2.popen("curl -o %s/http/index.html -s -w %s %s > %s/curl.txt"%(h1.IP(), '%{time_total}', h1.IP(), args.dir), shell=True).wait())
+            time_fetch.append(h2.popen("curl -o /dev/null -s -w %s %s/http/index.html > %s/curl.txt"%('%{time_total}', h1.IP(), args.dir), shell=True).wait())
         sleep(1)
 
     # TODO: compute average (and standard deviation) of the fetch
@@ -214,6 +214,9 @@ def bufferbloat():
     # print(time_fetch)
     avg = sum(time_fetch)/len(time_fetch)
     std = np.std(time_fetch)
+
+    Popen("echo 'Average time to fetch webpage: %s\n Standard deviation to fetch webpage: %s\n' >> %s/README.txt"%(avg, std, args.dir), shell=True).wait()
+
     print "Average time to fetch webpage: %.2f seconds"%avg
     print "Standard deviation: %.2f seconds"%std
 
