@@ -198,7 +198,6 @@ def bufferbloat():
     while True:
         now = time()
         delta = now - start_time
-        time_fetch.append(delta)
         if delta > args.time:
             break
         print "%.1fs left..." % (args.time - delta)
