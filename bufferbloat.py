@@ -118,7 +118,7 @@ def start_iperf(net):
     # TODO: Start the iperf client on h1.  Ensure that you create a
     # long lived TCP flow. You may need to redirect iperf's stdout to avoid blocking.
     h1 = net.get('h1')
-    client = h1.popen("iperf -c %s -t 1000 -w 16m > %s/iperf.txt"%(h2.IP(), args.dir), shell=True)
+    client = h1.popen("iperf -c %s -t %s > %s/iperf.txt"%(h2.IP(), args.time, args.dir), shell=True)
 
 
 def start_webserver(net):
@@ -208,13 +208,9 @@ def bufferbloat():
         if delta > args.time:
             break
         print "%.1fs left..." % (args.time - delta)
-        # h1 = net.get('h1')
-        # h2 = net.get('h2')
         for _ in range(3):
-            # time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
             time_fetch.append(fetch_curl_time(net))
             sleep(1)
-        # sleep(5)
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
