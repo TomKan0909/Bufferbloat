@@ -202,7 +202,6 @@ def bufferbloat():
     time_fetch = []
     start_time = time()
     while True:
-        sleep(1)
         now = time()
         delta = now - start_time
         if delta > args.time:
@@ -217,7 +216,6 @@ def bufferbloat():
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-    print(time_fetch)
     avg = sum(time_fetch)/len(time_fetch)
     std = np.std(time_fetch)
 
