@@ -202,21 +202,18 @@ def bufferbloat():
     time_fetch = []
     start_time = time()
     while True:
+        sleep(1)
         now = time()
         delta = now - start_time
         if delta > args.time:
             break
         print "%.1fs left..." % (args.time - delta)
-        h1 = net.get('h1')
-        h2 = net.get('h2')
+        # h1 = net.get('h1')
+        # h2 = net.get('h2')
         for _ in range(3):
             # time_fetch.append(h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html > %s/curl.txt"%(h1.IP(), args.dir), shell=True).communicate()[0])
             time_fetch.append(fetch_curl_time(net))
-        sleep(1)
-        # after_fetch = time()
-        # if after_fetch - now < 5:
-        #     sleep(5 - (after_fetch - now))
-
+        sleep(5)
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
