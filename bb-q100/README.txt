@@ -13,3 +13,6 @@ Standard deviation to fetch webpage: 2.90469806526
 Average time to fetch webpage: 1.73083333333
 Standard deviation to fetch webpage: 2.71746325744
 
+Average time to fetch webpage: 1.29558333333
+Standard deviation to fetch webpage: 0.629766353279
+
