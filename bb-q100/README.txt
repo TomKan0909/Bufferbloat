@@ -1,18 +1,3 @@
-Average time to fetch webpage: 1.28126984127
-Standard deviation to fetch webpage: 2.42316491985
-
-Average time to fetch webpage: 2.291
-Standard deviation to fetch webpage: 5.16617219677
-
-Average time to fetch webpage: 2.18029166667
-Standard deviation to fetch webpage: 4.6306185735
-
-Average time to fetch webpage: 1.56557575758
-Standard deviation to fetch webpage: 2.90469806526
-
-Average time to fetch webpage: 1.73083333333
-Standard deviation to fetch webpage: 2.71746325744
-
 Average time to fetch webpage: 1.29558333333
 Standard deviation to fetch webpage: 0.629766353279
 
