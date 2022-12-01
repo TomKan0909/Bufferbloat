@@ -19,3 +19,13 @@ RTT ~ 0.01-0.03 * QUEUE_SIZE
 4. *Identify and describe two ways to mitigate the bufferbloat problem.* <br/>
 - Use smarter deque techniques for buffer instead of FIFO, help smooth out network traffic instead of clumping it all together
 - Decrease buffer size to help decrease buffer delay for packets. Let congestion control deal with packet loss issue
+
+---
+q100
+Average time to fetch webpage: 1.29558333333
+Standard deviation to fetch webpage: 0.629766353279
+
+q20
+Average time to fetch webpage: 0.720866666667
+Standard deviation to fetch webpage: 0.291338146413
+
